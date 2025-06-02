@@ -1,0 +1,303 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 210 20% 98%;
+  --foreground: 220 20% 20%;
+  --muted: 210 20% 95%;
+  --muted-foreground: 220 10% 45%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 220 20% 20%;
+  --card: 0 0% 100%;
+  --card-foreground: 220 20% 20%;
+  --border: 220 13% 90%;
+  --input: 220 13% 90%;
+  --primary: 220 85% 57%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 280 75% 60%;
+  --secondary-foreground: 210 40% 98%;
+  --accent: 262 83% 58%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84% 60%;
+  --destructive-foreground: 210 40% 98%;
+  --ring: 220 85% 57%;
+  --radius: 0.75rem;
+  --chart-1: var(--primary);
+  --chart-2: var(--secondary);
+  --chart-3: var(--success);
+  --chart-4: var(--destructive);
+  --chart-5: var(--accent);
+  
+  /* Custom colors for the app */
+  --primary-light: 220 85% 80%;
+  --secondary-light: 280 75% 80%;
+  --success: 145 65% 50%;
+  --success-light: 145 65% 75%;
+  --warning: 38 92% 50%;
+  --warning-light: 38 92% 80%;
+
+  /* Sidebar colors (not used in this app but required by the theme) */
+  --sidebar-background: var(--background);
+  --sidebar-foreground: var(--foreground);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: var(--accent);
+  --sidebar-accent-foreground: var(--accent-foreground);
+  --sidebar-border: var(--border);
+  --sidebar-ring: var(--ring);
+}
+
+.dark {
+  --background: 240 10% 3.9%;
+  --foreground: 0 0% 98%;
+  --muted: 240 3.7% 15.9%;
+  --muted-foreground: 240 5% 64.9%;
+  --popover: 240 10% 3.9%;
+  --popover-foreground: 0 0% 98%;
+  --card: 240 10% 3.9%;
+  --card-foreground: 0 0% 98%;
+  --border: 240 3.7% 15.9%;
+  --input: 240 3.7% 15.9%;
+  --primary: 207 90% 54%;
+  --primary-foreground: 211 100% 99%;
+  --secondary: 240 3.7% 65.9%;
+  --secondary-foreground: 0 0% 98%;
+  --accent: 240 3.7% 15.9%;
+  --accent-foreground: 0 0% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --ring: 240 4.9% 83.9%;
+  --radius: 0.5rem;
+  
+  /* Custom colors for dark mode */
+  --primary-light: 207 60% 45%;
+  --secondary-light: 240 65% 65%;
+  --success: 151 50% 40%;
+  --success-light: 151 50% 50%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply font-sans antialiased bg-background text-foreground;
+  }
+}
+
+/* Calendar styles */
+.calendar-day {
+  position: relative;
+}
+
+.calendar-day.has-entry::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  @apply bg-primary;
+}
+
+/* Component transitions */
+.transition-all {
+  transition: all 0.3s ease;
+}
+
+.emotion-icon {
+  transition: transform 0.2s ease;
+}
+
+.emotion-icon:hover {
+  transform: scale(1.1);
+}
+
+.quadrant-card {
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.quadrant-card:hover {
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  transform: translateY(-2px);
+}
+
+.strategy-card {
+  transition: transform 0.3s ease;
+}
+
+.strategy-card:hover {
+  transform: translateY(-3px);
+}
+
+/* Breathing exercise animations */
+@keyframes expand {
+  from { transform: scale(1); }
+  to { transform: scale(1.2); }
+}
+
+@keyframes contract {
+  from { transform: scale(1.2); }
+  to { transform: scale(1); }
+}
+
+@keyframes pulse-slow {
+  0% { transform: scale(1.2); }
+  50% { transform: scale(1.18); }
+  100% { transform: scale(1.2); }
+}
+
+.animate-expand {
+  animation: expand 4s ease-in-out forwards;
+}
+
+.animate-contract {
+  animation: contract 8s ease-in-out forwards;
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 2s ease-in-out infinite;
+}
+
+/* Visual Enhancement Styles */
+.gradient-text {
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.gradient-bg {
+  background: linear-gradient(135deg, hsl(var(--primary)/0.1), hsl(var(--accent)/0.1));
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.shadow-card {
+  box-shadow: 
+    0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.shadow-card:hover {
+  box-shadow: 
+    0 15px 25px -5px rgba(0, 0, 0, 0.1),
+    0 10px 10px -5px rgba(0, 0, 0, 0.04),
+    0 0 0 1px rgba(0, 0, 0, 0.05);
+}
+
+.dot-pattern {
+  background-image: radial-gradient(circle, hsl(var(--primary)/0.2) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+.gradient-border {
+  position: relative;
+  border-radius: var(--radius);
+  padding: 1px;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--secondary)));
+}
+
+.gradient-border > div {
+  background: white;
+  border-radius: calc(var(--radius) - 1px);
+}
+
+/* Database visualization */
+.db-container {
+  position: relative;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.db-container:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.db-table {
+  margin-bottom: 1rem;
+  background: var(--card);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+}
+
+.db-header {
+  padding: 0.75rem 1rem;
+  background: linear-gradient(90deg, hsl(var(--primary)), hsl(var(--primary-light)));
+  color: var(--primary-foreground);
+  font-weight: 600;
+}
+
+.db-row {
+  display: flex;
+  padding: 0.7rem 1rem;
+  border-bottom: 1px solid var(--border);
+  transition: background-color 0.15s ease;
+}
+
+.db-row:hover {
+  background-color: hsl(var(--muted));
+}
+
+.db-row:last-child {
+  border-bottom: none;
+}
+
+.db-column {
+  flex: 1;
+  padding: 0.25rem 0;
+}
+
+.db-column-header {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+/* Database status indicators */
+.status-connected {
+  @apply flex items-center text-green-600 bg-green-50 px-2 py-0.5 rounded-full text-xs;
+}
+
+.status-disconnected {
+  @apply flex items-center text-red-600 bg-red-50 px-2 py-0.5 rounded-full text-xs;
+}
+
+.status-connecting {
+  @apply flex items-center text-blue-600 bg-blue-50 px-2 py-0.5 rounded-full text-xs animate-pulse;
+}
+
+/* Entry list scrollbar */
+.max-h-64 {
+  max-height: 16rem;
+}
+
+.max-h-64::-webkit-scrollbar {
+  width: 6px;
+}
+
+.max-h-64::-webkit-scrollbar-track {
+  @apply bg-neutral-100 rounded;
+}
+
+.max-h-64::-webkit-scrollbar-thumb {
+  @apply bg-neutral-300 rounded-full;
+}
+
+.max-h-64::-webkit-scrollbar-thumb:hover {
+  @apply bg-neutral-400;
+}
